@@ -1,0 +1,9 @@
+require 'eth'
+
+client = Eth::Client.create 'http://localhost:8545'
+contract_address = '0xYourContractAddress'
+contract = Eth::Contract.from_abi('CryptDox', contract_address, abi)
+
+# Transfer tokens
+tx = contract.transact_and_wait(:transfer, '0xRecipientAddress', 100)
+puts "Transaction hash: #{tx}"
